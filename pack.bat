@@ -1,0 +1,1 @@
+"C:\Program Files\7-Zip\7z.exe" a QueueSim_SourceAndExamples.zip @pack.txt
