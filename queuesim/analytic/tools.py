@@ -1,7 +1,5 @@
 """Auxiliary functions for calculation of Erlang B and Erlang C formulas."""
 
-from math import prod
-
 
 __title__ = "queuesim"
 __version__ = "1.0"
