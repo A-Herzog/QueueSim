@@ -30,6 +30,8 @@ example_sim_call_center_series.ipynb
 example_sim_minimal_GGc.ipynb
 example_sim_minimal_MM1.ipynb
 example_sim_mmc_course.ipynb
+example_sim_mmc_priorities1.ipynb
+example_sim_mmc_priorities2.ipynb
 example_sim_mmc_series.ipynb
 example_sim_mmc_simple.ipynb
 example_sim_network.ipynb

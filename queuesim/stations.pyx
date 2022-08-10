@@ -59,7 +59,7 @@ class Client:
     __type_name: str
     __waitingTime: float
     __serviceTime: float
-    stationArrivalTime: float
+    stationArrivalTime = cython.declare(cython.float, visibility='public')
     removeEvent: Optional[Event]
 
     def __init__(self, simulator: Simulator, type_name: str) -> None:
@@ -415,7 +415,7 @@ class _WaitingCancelationEvent(StationEvent):
 @cython.cclass
 class Process(Station):
     """ Station: Process station."""
-    __slots__ = ("__getS", "__getS_client_type", "__getS2", "__getNu", "__getNu_client_type", "__c", "__cBusy", "__K", "__b", "__FIFO", "__wip", "__queue", "__nextStationCancel", "__statisticStationWaiting", "__statisticStationService", "__statisticStationPostProcessing", "__statisticStationResidence", "__statisticSuccess", "__statisticQueueLength", "__statisticWIP", "__statisticWorkload", "__nextStation")
+    __slots__ = ("__getS", "__getS_client_type", "__getS2", "__getNu", "__getNu_client_type", "__c", "__cBusy", "__K", "__b", "__FIFO", "__getPriority", "__wip", "__queue", "__nextStationCancel", "__statisticStationWaiting", "__statisticStationService", "__statisticStationPostProcessing", "__statisticStationResidence", "__statisticSuccess", "__statisticQueueLength", "__statisticWIP", "__statisticWorkload", "__nextStation")
 
     __getS: Any
     __getS_client_type: Any
@@ -427,6 +427,7 @@ class Process(Station):
     __K: int
     __b: int
     __FIFO: bool
+    __getPriority: Any
     __wip: int
     __queue: list[Client]
     __nextStationCancel: Optional[Station]
@@ -440,7 +441,7 @@ class Process(Station):
     __statisticWorkload: RecordContinuous
     __nextStation: Optional[Station]
 
-    def __init__(self, simulator: Simulator, getS: Any, c: int, getNu: Any = None, getS2: Any = None, K: int = -1, b: int = 1, LIFO: bool = False, record_values: bool = False, getS_client_type: Any = None, getNu_client_type: Any = None) -> None:
+    def __init__(self, simulator: Simulator, getS: Any, c: int, getNu: Any = None, getS2: Any = None, K: int = -1, b: int = 1, LIFO: bool = False, getPriority: Any = None, record_values: bool = False, getS_client_type: Any = None, getNu_client_type: Any = None) -> None:
         """ Station: Process station.
 
         Args:
@@ -451,8 +452,11 @@ class Process(Station):
             getS2 (Any, optional): Generates the individual postprocessing times (must be a lambda, a string that can be evaluated to a lambda, or None). If None is passed, there are no post processing times. Defaults to None.
             K (int, optional): Size of the waiting and service room. Must be greater than or equal to c, or else -1 for "unlimited". Defaults to -1.
             b (int, optional): Service batch size. Defaults to 1.
-            LIFO (bool, optional): Operation according to FIFO rule (False) or LIFO rule (True). Defaults to False.
+            LIFO (bool, optional): Operation according to FIFO rule (False) or LIFO rule (True). Defaults to False. Is only used if getPriority is None.
+            getPriority (Any, optional): Calculation of the priorities for the waiting clients (must be a lambda, a string that can be evaluated to a lambda, or None). If None is passed, the LIFO parameter is interpreted. Defaults to None.
             record_values (bool, optional): Record each state change? Defaults to False.
+            getS_client_type (Any, optional): Dict defining services times (string or lambda) by client type (str); if there is no service time defined for a client type, the default service time from the getS parameter is used
+            getNu_client_type (Any, optional): Dict defining waiting time tolerances (string or lambda) by client type (str); if there is no waiting time tolerance defined for a client type, the default service time from the getS parameter is used
         """
         super().__init__(simulator)
         self.__getS = getS
@@ -465,6 +469,7 @@ class Process(Station):
         self.__K: int = K
         self.__b: int = max(1, b)
         self.__FIFO: bool = not LIFO
+        self.__getPriority = getPriority
         self.__wip: int = 0
         self.__queue: list[Client] = []
         self.__nextStation: Optional[Station] = None
@@ -564,7 +569,27 @@ class Process(Station):
         client.add_waiting(self.simulator.time - client.stationArrivalTime)
         self._send_client_to_next(client, False)
 
-    def _test_start_service(self) -> bool:
+    @cython.ccall
+    def _get_next_client_from_queue(self):
+        if self.__getPriority is None:
+            # Use FIFO / LIFO if not priority lambda is given
+            client: Client = self.__queue.pop(0) if self.__FIFO else self.__queue.pop(-1)
+            return client
+        else:
+            # Calculate priorities
+            if isinstance(self.__getPriority, str): self.__getPriority = eval(self.__getPriority)
+            best_client: Client = None
+            best_priority: float = 0
+            for i, c in enumerate(self.__queue):
+                priority: float = self.__getPriority(c, self.simulator.time - c.stationArrivalTime)
+                if i==0 or priority>best_priority:
+                    best_client = c
+                    best_priority = priority
+            self.__queue.remove(best_client)
+            return best_client
+
+    @cython.ccall
+    def _test_start_service(self):
         if len(self.__queue) < self.__b: return False
         if self.__cBusy >= self.__c: return False
 
@@ -572,7 +597,7 @@ class Process(Station):
         clients: list[Client] = []
         while len(clients) < self.__b:
             # Remove from queue
-            client: Client = self.__queue.pop(0) if self.__FIFO else self.__queue.pop(-1)
+            client: Client = self._get_next_client_from_queue()
             clients.append(client)
 
             # Calculate waiting time
@@ -597,7 +622,7 @@ class Process(Station):
         return True
 
     @cython.ccall
-    def _get_service_time(self, clients: list) -> float:
+    def _get_service_time(self, clients: list):
         if isinstance(self.__getS, str): self.__getS = eval(self.__getS)
 
         if self.__getS_client_type is not None:
@@ -875,7 +900,7 @@ class DecideCondition(Station):
     def arrival(self, client: Client) -> None:
         super(DecideCondition, self).arrival(client)
         if isinstance(self.__get_nr, str): self.__get_nr = eval(self.__get_nr)
-        nr: int = self.__get_nr()
+        nr: int = self.__get_nr(client)
         client.send_to(self.__station[nr])
         self.__statisticOptions.record(nr + 1)
 
@@ -951,7 +976,7 @@ class DecideClientType(Station):
         """
         next = []
         if self.__next_default is not None: next.append(self.__next_default)
-        for station in self.__next: next.append(station)
+        for station in self.__next.values(): next.append(station)
         return next
 
     def clear_lambdas(self) -> None:

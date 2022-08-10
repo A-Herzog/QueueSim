@@ -1,9 +1,9 @@
 """Auxiliary functions for creation of M/M/c and call center models"""
 
-from typing import Optional
+from typing import Any, Optional
 from .random_dist import exp as dist_exp
 from .descore import Simulator
-from .stations import DecideCondition, Source, Process, Decide, Delay, Dispose, Station
+from .stations import Source, Process, Decide, Delay, Dispose
 
 
 __title__ = "queuesim"
@@ -62,6 +62,37 @@ def mmc_model(mean_i: float, mean_s: float, c: int, count: int, record_values: b
     simulator = Simulator()
     source = Source(simulator, count, get_i)
     process = Process(simulator, get_s, c, record_values=record_values)
+    dispose = Dispose(simulator)
+
+    # Link stations
+    source.set_next(process)
+    process.set_next(dispose)
+
+    # Return model
+    return {'Source': source, 'Process': process, 'Dispose': dispose, 'meanI': mean_i, 'meanS': mean_s, 'c': c}
+
+
+def mmc_model_priorities(mean_i: float, mean_s: float, c: int, count: int, priority: Any) -> dict:
+    """Generates a simple M/M/c model with a priotiy lambda for the service discipline.
+
+    Args:
+        mean_i (float): Average inter-arrival time (E[I])
+        mean_s (float): Average service time (E[S])
+        c (int): Number of operators (c)
+        count (int): Client arrivals to be simulated
+        priority (Any): Lambda for getting the client priority
+
+    Returns:
+        object: Entire model consisting of stations and input parameters
+    """
+    # Define parameters
+    get_i = dist_exp(mean_i)
+    get_s = dist_exp(mean_s)
+
+    # Create and configure stations
+    simulator = Simulator()
+    source = Source(simulator, count, get_i)
+    process = Process(simulator, get_s, c, getPriority=priority)
     dispose = Dispose(simulator)
 
     # Link stations
