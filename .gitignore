@@ -2,3 +2,5 @@ queuesim/__pycache__
 queuesim/analytic/__pycache__
 .vscode
 development-test
+*.so
+*.c

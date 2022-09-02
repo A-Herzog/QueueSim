@@ -8,6 +8,6 @@
 
 # Initialization:
 # Step 1: Install Cython by entering "pip install Cython"
-# Step 2: Replace "~/python3.sh" below by the path to you Python installation.
+# Step 2: Replace "python3" below by the path to your Python installation if needed.
 
-~/python3.sh setup.py build_ext --inplace
+python3 setup.py build_ext --inplace
