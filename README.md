@@ -9,69 +9,99 @@ A PyPI package is not yet available. Just download and extract the zip package o
 
 The zip package also includes some Jupyter notebooks describing the base functions.
 
-### Requirements
+
+## Requirements
 
 * **Python 3.7 or higher** is needed to execute QueueSim.
 * **`numpy`** is used by `queuesim.statistics` and in several example Jupyter notebooks.
-* **`pandas`** and **`scipy`** is used in `queuesim.analytic`.
+* **`pandas`** and **`scipy`** are used in `queuesim.analytic`.
 * The visualizations in the example Jupyter notebooks use **`matplotlib`** and **`seaborn`**.
 * The graphical network builder (see `queuesim.graph.build_graph`) uses **`networkx`**.
 
-As long a you are not using the function for calculating analytical results, not using the Jupyter notebooks and not using the graph builder you will not need pandas, mathplotlib, seaborn and networkx.
+As long a you are not using the function for calculating analytical results, not using the Jupyter notebooks and not using the graph builder you will not need `pandas`, `mathplotlib`, `seaborn` and `networkx`.
 
 
 ## Main features of QueueSim
 
 * Building queueing networks on source code base (not only Kendall models)
-* Option to use any lambda expression for inter-arrival and service times (lambda expression generators for the most common distributions already included)
+* Option to use any lambda expressions for inter-arrival and service times (lambda expression generators for the most common distributions are included)
 * Batch arrival and service is possible
 * Option to model impatience of the clients
 * Branching clients by conditions or by chance
+* Different service disciplines are available (FIFO, LIFO or user-defined priority formulas)
 * Automatic statistic recording
 * Erlang and Allen Cunneen classes for comparison of simulation and analytical results
 * Helper classes for parallel multi-process simulation
-* Can be compiled using Cython (`pyx` classes with type annotations for speed-up included)
+* Can be compiled using Cython (`pyx` classes with type annotations for speed-up are included)
+
+
+
+# Usage examples
+
+* [Simulating simple models](README_Simulation.md)
+* [Random number distributions](README_distributions.md)
+* [Impatience](README_impatience.md)
+* [Networks](README_networks.md)
+* [Batch arrival and batch service](README_batch.md)
+* [Multiple client types with different service times or different priorities](README_clienttypes.md)
+* [FIFO/LIFO/Random](README_discipline.md)
+* [Post-processing times](README_postprocessing.md)
+* [Queueing systems with control](README_control.md)
+* [Statistics results](README_statistics.md)
+* [Parallelization](README_parallelization.md)
+* [Calculating analytical results](README_analytical.md)
+
+
 
 # Example Jupyter notebooks
 
-There exist a number of Jupyter notebooks that illustrate various functions of QueueSim:
+There is a number of Jupyter notebooks that illustrate various functions of QueueSim:
+
 
 ## Analytical calculations
 
-* Erlang B formula for M/M/c/c models: `example_analytic_erlang_b.ipynb`
-* Erlang C formula for M/M/c models `example_analytic_erlang_c.ipynb`
-* Extended Erlang C formula (with impatient clients) for M/M/c/K+M models: `example_analytic_erlang_c_ext.ipynb`
-* Allen Cunneen approximation formula for GI/G/c models: `example_analytic_ac_approx.ipynb`
+* Erlang B formula for M/M/c/c models: [`example_analytic_erlang_b.ipynb`](example_analytic_erlang_b.ipynb)
+* Erlang C formula for M/M/c models [`example_analytic_erlang_c.ipynb`](example_analytic_erlang_c.ipynb)
+* Extended Erlang C formula (with impatient clients) for M/M/c/K+M models: [`example_analytic_erlang_c_ext.ipynb`](example_analytic_erlang_c_ext.ipynb)
+* Allen Cunneen approximation formula for GI/G/c models: [`example_analytic_ac_approx.ipynb`](example_analytic_ac_approx.ipynb)
+
 
 ## Simulation
 
 Very simple simulation models not using QueueSim:
 
-* Minimal simulator for a M/M/1 model not using QueueSim, just a few lines of code: `example_sim_minimal_MM1.ipynb`
-* Minimal simulator for G/G/c models not using QueueSim, just a few lines of code: `example_sim_minimal_GGc.ipynb`
+* Minimal simulator for a M/M/1 model not using QueueSim, just a few lines of code: [`example_sim_minimal_MM1.ipynb`](example_sim_minimal_MM1.ipynb)
+* Minimal simulator for G/G/c models not using QueueSim, just a few lines of code: [`example_sim_minimal_GGc.ipynb`](example_sim_minimal_GGc.ipynb)
 
 Simulation models:
 
-* Simulation results of a M/M/c model compared to the analytical Erlang C results: `example_sim_mmc_simple.ipynb`
-* Recording the course of number of clients in the system in a M/M/c model: `example_sim_mmc_course.ipynb`
-* Parameter study of a M/M/c model: `example_sim_mmc_series.ipynb`
+* Simulation results of a M/M/c model compared to the analytical Erlang C results: [`example_sim_mmc_simple.ipynb`](example_sim_mmc_simple.ipynb)
+* Recording the course of number of clients in the system in a M/M/c model: [`example_sim_mmc_course.ipynb`](example_sim_mmc_course.ipynb)
+* Parameter study of a M/M/c model: [`example_sim_mmc_series.ipynb`](example_sim_mmc_series.ipynb)
 
 Complex simulation models:
 
-* Simulation of a call center model (a M/M/c/K+M model with forwarding and retry): `example_sim_call_center.ipynb`
-* Parameter study of a call center model: `example_sim_call_center_series.ipynb`
-* Simulation of a queueing network with transition probabilities defined via matrices: `example_sim_network.ipynb`
-* Distribution random number generator tests: `example_sim_random_numbers.ipynb`
-* System design - comparison of different queueing disciplines: `exmaple_sim_shortest_queue.ipynb`
+* Simulation of a call center model (a M/M/c/K+M model with forwarding and retry): [`example_sim_call_center.ipynb`](example_sim_call_center.ipynb)
+* Parameter study of a call center model: [`example_sim_call_center_series.ipynb`](example_sim_call_center_series.ipynb)
+* Simulation of a queueing network with transition probabilities defined via matrices: [`example_sim_network.ipynb`](example_sim_network.ipynb)
+* Distribution random number generator tests: [`example_sim_random_numbers.ipynb`](example_sim_random_numbers.ipynb)
+* System design - comparison of different queueing disciplines: [`exmaple_sim_shortest_queue.ipynb`](exmaple_sim_shortest_queue.ipynb)
 
-Optimization:
+Queueing disciplines:
 
-* Simple iterative optimization example: `example_optimize_simple1.ipynb`
-* Simple optimization example using [BOBYQA](https://pypi.org/project/Py-BOBYQA/): `example_optimize_simple2.ipynb`
-* More complex iterative optimization example: `example_optimize_complex1.ipynb`
-* More complex optimization example using [BOBYQA](https://pypi.org/project/Py-BOBYQA/): `example_optimize_complex2.ipynb`
+* FIFO, LIFO or random selection of the next client: [`example_sim_mmc_priorities1.ipynb`](example_sim_mmc_priorities1.ipynb)
+* Two client types with different priorities: [`example_sim_mmc_priorities2.ipynb`](example_sim_mmc_priorities2.ipynb)
 
-# Documentation of the main classes
+## Optimization
+
+* Simple iterative optimization example: [`example_optimize_simple1.ipynb`](example_optimize_simple1.ipynb)
+* Simple optimization example using [BOBYQA](https://pypi.org/project/Py-BOBYQA/): [`example_optimize_simple2.ipynb`](example_optimize_simple2.ipynb)
+* More complex iterative optimization example: [`example_optimize_complex1.ipynb`](example_optimize_complex1.ipynb)
+* More complex optimization example using [BOBYQA](https://pypi.org/project/Py-BOBYQA/): [`example_optimize_complex2.ipynb`](example_optimize_complex2.ipynb)
+
+
+
+# Overview of the main classes
 
 ## The Simulator
 
@@ -133,7 +163,18 @@ next_station_in_queueing_network = ...
 process.set_next(next_station_in_queueing_network)
 ```
 
-Further optional parameters for the constructor: `getNu=` (waiting cancelation distribution), `getS2=` (post-processing times distribution), `K=` (maximum system size), `b=` (service batch size), `LIFO=` (use LIFO instead of FIFO), `record_values=` (record course of the queue length and the number of clients at the station instead of only the usual statistic indicators). If clients can leave the station without being served (due to system size limitations or due to impatience) via `process.set_next_cancel(...)` a path for these unsuccessful clients has to be defined.
+Further optional parameters for the constructor are:
+* `getNu=` (waiting cancelation distribution)
+* `getS2=` (post-processing times distribution)
+* `K=` (maximum system size)
+* `b=` (service batch size)
+* `LIFO=` (use LIFO instead of FIFO)
+* `getPriority=` (priorities of the waiting clients)
+* `record_values=` (record course of the queue length and the number of clients at the station instead of only the usual statistic indicators)
+* `getS_client_type=` (waiting cancelation distributions for individual client types)
+* `getNu_client_type=` (service times distributions for individual client types)
+
+If clients can leave the station without being served (due to system size limitations or due to impatience) via `process.set_next_cancel(...)` a path for these unsuccessful clients has to be defined.
 
 ### Dispose
 
@@ -195,6 +236,10 @@ simulator.run()
 
 The `model` object is a `dict` containing source, process and dispose: `model['Source']`, `model['Process']` and `model['Dispose']`.
 
+There are also two more functions for creating more complex models:
+
+* `mmc_model_priorities(mean_i, mean_s, c, count, priority)`: Creates a M/M/c model using a priority formula at the process station for the queueing discipline.
+* `impatience_and_retry_model_build(mean_i, mean_s, mean_wt, retry_probability, mean_retry_delay, c, count)`: Create an extended M/M/c model containing impatience and retrying clients.
 
 ## Pseudo random number generators
 
@@ -206,7 +251,7 @@ In `queuesim.random_dist` there are lambda factory methods for these distributio
 * Uniform distribution: `uniform(low, high)`
 * Triangular distribution: `uniform(low, most_likely, high)`
 * Deterministic: `deterministic(fixed_value)`
-* Empirical: `empirical(options)` where `options` is a dict of values to rates
+* Empirical: `empirical(options)` where `options` is a `dict` of values to rates
 
 Since the gamma distribution is a generalization of the Erlang distribution, the quite common Erlang distribution is also covered.
 
@@ -231,11 +276,11 @@ Each station records the statistic indicators relevant for the station (and the 
 * `dispose.statistic_client_service` (type: `RecordDiscrete`)
 * `dispose.statistic_client_residence` (type: `RecordDiscrete`)
 
-The `RecordDiscrete` object offers these properties: `count`, `mean`, `sd`, `cv`, `min`, `max`, `histogram` and `histogram_stepwide`. While most of them are of the type `float`, `histogram` is `list[float]` and `histogram_stepwide` is `int`.
+The `RecordDiscrete` class offers these properties: `count`, `mean`, `sd`, `cv`, `min`, `max`, `histogram` and `histogram_stepwide`. While most of them are of the type `float`, `histogram` is `list[float]` and `histogram_stepwide` is `int`.
 
-The `RecordOptions` object offers these properties: `count` and `data`. `count` is of type `int` and `data` of type `collections.Counter`.
+The `RecordOptions` class offers these properties: `count` and `data`. `count` is of type `int` and `data` of type `collections.Counter`.
 
-The `RecordContinuous` object offers these properties: `time`, `mean`, `min` and `max` (all of type `float`). If values recording is activated, they can be accessed via `values` (tuple of two lists: time stamps and values).
+The `RecordContinuous` object offers these properties: `time`, `mean`, `min` and `max` (all of type `float`). If value recording is activated, they can be accessed via `values` (tuple of two lists: time stamps and values).
 
 In the M/M/c example model above you can get the mean waiting time of the clients and the mean queue length at the station via:
 
@@ -243,6 +288,7 @@ In the M/M/c example model above you can get the mean waiting time of the client
 print("E[N_Q]=", process.statistic_queue_length.mean)
 print("E[W]=", dispose.statistic_client_waiting.mean)
 ```
+
 
 # What's next?
 
@@ -269,7 +315,7 @@ process1 = Process(simulator, service_time1, c1)
 process2 = Process(simulator, service_time2, c2)
 dispose = Dispose(simulator)
 
-def shortest_queue() -> int:
+def shortest_queue(client) -> int:
     nq1 = process1.nq
     nq2 = process2.nq
     if nq1 < nq2: return 0
@@ -294,7 +340,6 @@ Assume we have m<sub>1</sub> sources, m<sub>2</sub> process stations and m<sub>3
 If you want to get a graphical representation of your queueing network, you can use `queueim.build_graph(list_of_sources)` to get a digraph which can be plotted using `networkx`.
 
 
-
 ## Comparison to Erlang B, Erlang C and Allen Cunneen approximation formulas
 
 In `queuesim.analytic` there are classes for calculating the performance indicators for M/M/c/c, M/M/c, M/M/c/K+M and GI/G/c models. The classes for the different formulas all work in the same way: The parameters of the models have to be specified in the constructor. Then the statistic values can be accessed via properties. Example:
@@ -313,7 +358,7 @@ print("Average residence time E[V]=", model.EV)
 
 For each individual value class there is also a `..._table` function which takes a list of tuples of the parameters for the formula as parameter and returns a `pandas.DataFrame` of the results for the individual parameter combinations.
 
-There are four notebooks (`example_analytic_erlang_b.ipynb`, `example_analytic_erlang_c.ipynb`, `example_analytic_erlang_c_ext.ipynb` and `example_analytic_ac_approx.ipynb`) showing how to use the analytical formula classes.
+There are four notebooks ([`example_analytic_erlang_b.ipynb`](example_analytic_erlang_b.ipynb), [`example_analytic_erlang_c.ipynb`](example_analytic_erlang_c.ipynb), [`example_analytic_erlang_c_ext.ipynb`](example_analytic_erlang_c_ext.ipynb) and [`example_analytic_ac_approx.ipynb`](example_analytic_ac_approx.ipynb)) showing how to use the analytical formula classes.
 
 
 ## Parallelization
@@ -345,6 +390,7 @@ This allows to run multiple simulations at the same time. (Since individual proc
 For all features and functions described above there are Jupyter notebooks included in the QueueSim zip package. So just open a notebook and execute it to try out the different functions.
 
 
+
 # What QueueSim cannot do
 
 * QueueSim is implemented in Python, so **its not very fast**. There are `pyx` files and a `setup.py` included so the performance critical classes can be compiled using Cython. This will speed-up simulation by a factor of 1.2 to 2. But this will still be quite slow compared to fully compiling languages. (See `cython-build.sh` script for compiling classes using Cython.)
@@ -353,6 +399,7 @@ For all features and functions described above there are Jupyter notebooks inclu
 * Since there is no graphical user-interface things like **animation of the models** etc. are also not possible.
 
 If you want to have these feature, you can try **[Warteschlangensimulator](https://github.com/A-Herzog/Warteschlangensimulator)**, which is an open source desktop application and allows to define queueing models in form of flow charts. Warteschlangensimulator allows to create and run queueing models without programming.
+
 
 
 # Contact
