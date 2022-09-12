@@ -38,7 +38,7 @@ As long a you are not using the function for calculating analytical results, not
 
 # Usage examples
 
-* [Simulating simple models](README_Simulation.md)
+* [Simulating simple models](README_simulation.md)
 * [Random number distributions](README_distributions.md)
 * [Impatience](README_impatience.md)
 * [Networks](README_networks.md)
