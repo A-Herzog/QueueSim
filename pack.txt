@@ -39,4 +39,16 @@ example_sim_random_numbers.ipynb
 exmaple_sim_shortest_queue.ipynb
 LICENSE
 README.md
+README_analytical.md
+README_batch.md
+README_clienttypes.md
+README_control.md
+README_discipline.md
+README_distributions.md
+README_impatience.md
+README_networks.md
+README_parallelization.md
+README_postprocessing.md
+README_simulation.md
+README_statistics.md
 setup.py
