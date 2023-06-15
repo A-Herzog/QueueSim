@@ -82,6 +82,6 @@ This method reduces the risk that one queue runs empty while there are clients i
 * **Single queue, batch processing**<br>In this case we have `b=2`. This has the same result on the available work performance s the faster operator or as to have two default operators. But the there strategies still have some differences (see example notebook below).
 
 
-## Example Jupyter notebook
+## Example files
 
-In [`exmaple_sim_shortest_queue.ipynb`](exmaple_sim_shortest_queue.ipynb) the strategies descript above are implemented and the differences are explained.
+In [`exmaple_sim_shortest_queue.ipynb`](exmaple_sim_shortest_queue.ipynb) and in [`exmaple_sim_shortest_queue.py`](exmaple_sim_shortest_queue.py) the strategies descript above are implemented and the differences are explained.

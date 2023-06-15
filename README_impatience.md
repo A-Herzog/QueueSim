@@ -67,6 +67,6 @@ simulator.run()
 ```
 
 
-## Example Jupyter notebook
+## Example files
 
-See [`example_sim_call_center.ipynb`](example_sim_call_center.ipynb) for a complete example of a model with impatience and retry.
+See [`example_sim_call_center.ipynb`](example_sim_call_center.ipynb) or [`example_sim_call_center.py`](example_sim_call_center.py) for a complete example of a model with impatience and retry.

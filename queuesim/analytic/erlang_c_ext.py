@@ -260,7 +260,7 @@ def erlang_c_ext_table(parameters: list) -> pd.DataFrame:
         nu.append(erl.nu)
         a.append(erl.a)
         c.append(erl.c)
-        K.append(erl.c)
+        K.append(erl.K)
         rho_offered.append(erl.rho_offered)
         rho_real.append(erl.rho_real)
         p_blocked.append(erl.p_blocked)

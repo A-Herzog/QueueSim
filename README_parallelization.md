@@ -19,7 +19,21 @@ processes=[SimProcess(mmc_model(mean_i, mean_s, c, count)) for mean_s in mean_s_
 
 # Run processes and wait for termination of all processes
 models, simulators = run_parallel(processes)
+
+# Get a list of the average queue lengths of the different models
+ENQ = [model['Process'].statistic_queue_length.mean for model in models]
 ```
+
+
+## Differences between plain Python and Jupyter notebook mode
+
+In plain Python code you will need to add a
+```
+if __name__ == '__main__':
+```
+above the simulation code to ensure it is only executed in the main process.
+See [`example_sim_mmc_series.py`](example_sim_mmc_series.py) for this.
+
 
 
 ## Limitations
@@ -27,6 +41,7 @@ models, simulators = run_parallel(processes)
 To send models to sub processes the data need to be serialized. Since only simple objects (numbers, strings, etc.) can be serialized, no lambda expressions for getting inter-arrival times, service times etc. can be used in the model. When using the convenience functions from `queuesim.random_dist` (see [Random number distributions](README_distributions.md)) this is no problem. The generator functions can return lambda expressions or strings that can be evaluated to lambda expressions. If the `as_lambda=True` parameter is not used, they will return strings. All stations of QueueSim can handle lambda expressions as well as strings for inter-arrival times, service times etc. The strings will be evaluated to function object on first use (this means: in the sub process, after serialization and unserialization).
 
 
-## Example Jupyter notebook
 
-See [`example_sim_mmc_series.ipynb`](example_sim_mmc_series.ipynb) for a complete example of using multiple simulation processes in parallel.
+## Example files
+
+See [`example_sim_mmc_series.ipynb`](example_sim_mmc_series.ipynb) or [`example_sim_mmc_series.py`](example_sim_mmc_series.py) for a complete example of using multiple simulation processes in parallel.

@@ -7,13 +7,16 @@ QueueSim is a Python package for discrete event stochastic simulation of queuein
 
 A PyPI package is not yet available. Just download and extract the zip package offered here.
 
-The zip package also includes some Jupyter notebooks describing the base functions.
+The zip package also includes some example files (as plain Python files and as Jupyter notebooks) describing the base functions.
+
+* If you are using a Python environment which can show Jupyter notebooks, open and run any from the `example_*.ipynb` files in this directory.
+* If you are using plain Python, open and run any from the `example_*.py` files in this directory.
 
 
 ## Requirements
 
 * **Python 3.7 or higher** is needed to execute QueueSim.
-* **`numpy`** is used by `queuesim.statistics` and in several example Jupyter notebooks.
+* **`numpy`** is used by `queuesim.statistics` and in several example files.
 * **`pandas`** and **`scipy`** are used in `queuesim.analytic`.
 * The visualizations in the example Jupyter notebooks use **`matplotlib`** and **`seaborn`**.
 * The graphical network builder (see `queuesim.graph.build_graph`) uses **`networkx`**.
@@ -53,51 +56,91 @@ As long a you are not using the function for calculating analytical results, not
 
 
 
-# Example Jupyter notebooks
+# Example files
 
-There is a number of Jupyter notebooks that illustrate various functions of QueueSim:
+There is a number of `py` files and Jupyter notebooks that illustrate various functions of QueueSim:
 
 
 ## Analytical calculations
 
-* Erlang B formula for M/M/c/c models: [`example_analytic_erlang_b.ipynb`](example_analytic_erlang_b.ipynb)
-* Erlang C formula for M/M/c models [`example_analytic_erlang_c.ipynb`](example_analytic_erlang_c.ipynb)
-* Extended Erlang C formula (with impatient clients) for M/M/c/K+M models: [`example_analytic_erlang_c_ext.ipynb`](example_analytic_erlang_c_ext.ipynb)
-* Allen Cunneen approximation formula for GI/G/c models: [`example_analytic_ac_approx.ipynb`](example_analytic_ac_approx.ipynb)
+* **Erlang B formula for M/M/c/c models**
+  * Plain Python: [`example_analytic_erlang_b.py`](example_analytic_erlang_b.py)
+  * Jupyter notebook: [`example_analytic_erlang_b.ipynb`](example_analytic_erlang_b.ipynb)
+* **Erlang C formula for M/M/c models**
+  * Plain Python: [`example_analytic_erlang_c.py`](example_analytic_erlang_c.py)
+  * Jupyter notebook: [`example_analytic_erlang_c.ipynb`](example_analytic_erlang_c.ipynb)
+* **Extended Erlang C formula (with impatient clients) for M/M/c/K+M models**
+  * Plain Python: [`example_analytic_erlang_c_ext.py`](example_analytic_erlang_c_ext.py)
+  * Jupyter notebook: [`example_analytic_erlang_c_ext.ipynb`](example_analytic_erlang_c_ext.ipynb)
+* **Allen Cunneen approximation formula for GI/G/c models**
+  * Plain Python: [`example_analytic_ac_approx.py`](example_analytic_ac_approx.py)
+  * Jupyter notebook: [`example_analytic_ac_approx.ipynb`](example_analytic_ac_approx.ipynb)
 
 
 ## Simulation
 
-Very simple simulation models not using QueueSim:
+### Very simple simulation models not using QueueSim
 
-* Minimal simulator for a M/M/1 model not using QueueSim, just a few lines of code: [`example_sim_minimal_MM1.ipynb`](example_sim_minimal_MM1.ipynb)
-* Minimal simulator for G/G/c models not using QueueSim, just a few lines of code: [`example_sim_minimal_GGc.ipynb`](example_sim_minimal_GGc.ipynb)
+* **Minimal simulator for a M/M/1 model not using QueueSim, just a few lines of code**
+  * Plain Python: [`example_sim_minimal_MM1.py`](example_sim_minimal_MM1.py)
+  * Jupyter notebook: [`example_sim_minimal_MM1.ipynb`](example_sim_minimal_MM1.ipynb)
+* **Minimal simulator for G/G/c models not using QueueSim, just a few lines of code**
+  * Plain Python: [`example_sim_minimal_GGc.py`](example_sim_minimal_GGc.py)
+  * Jupyter notebook: [`example_sim_minimal_GGc.ipynb`](example_sim_minimal_GGc.ipynb)
 
-Simulation models:
+### Simulation models
 
-* Simulation results of a M/M/c model compared to the analytical Erlang C results: [`example_sim_mmc_simple.ipynb`](example_sim_mmc_simple.ipynb)
-* Recording the course of number of clients in the system in a M/M/c model: [`example_sim_mmc_course.ipynb`](example_sim_mmc_course.ipynb)
-* Parameter study of a M/M/c model: [`example_sim_mmc_series.ipynb`](example_sim_mmc_series.ipynb)
+* **Simulation results of a M/M/c model compared to the analytical Erlang C results**
+  * Plain Python: [`example_sim_mmc_simple.py`](example_sim_mmc_simple.py)
+  * Jupyter notebook: [`example_sim_mmc_simple.ipynb`](example_sim_mmc_simple.ipynb)
+* **Recording the course of number of clients in the system in a M/M/c model**
+  * Plain Python: [`example_sim_mmc_course.py`](example_sim_mmc_course.py)
+  * Jupyter notebook: [`example_sim_mmc_course.ipynb`](example_sim_mmc_course.ipynb)
+* **Parameter study of a M/M/c model**
+  * Plain Python: [`example_sim_mmc_series.py`](example_sim_mmc_series.py)
+  * Jupyter notebook: [`example_sim_mmc_series.ipynb`](example_sim_mmc_series.ipynb)
 
-Complex simulation models:
+### Complex simulation models
 
-* Simulation of a call center model (a M/M/c/K+M model with forwarding and retry): [`example_sim_call_center.ipynb`](example_sim_call_center.ipynb)
-* Parameter study of a call center model: [`example_sim_call_center_series.ipynb`](example_sim_call_center_series.ipynb)
-* Simulation of a queueing network with transition probabilities defined via matrices: [`example_sim_network.ipynb`](example_sim_network.ipynb)
-* Distribution random number generator tests: [`example_sim_random_numbers.ipynb`](example_sim_random_numbers.ipynb)
-* System design - comparison of different queueing disciplines: [`exmaple_sim_shortest_queue.ipynb`](exmaple_sim_shortest_queue.ipynb)
+* **Simulation of a call center model (a M/M/c/K+M model with forwarding and retry)**
+  * Plain Python: [`example_sim_call_center.py`](example_sim_call_center.py)
+  * Jupyter notebook: [`example_sim_call_center.ipynb`](example_sim_call_center.ipynb)
+* **Parameter study of a call center model**
+  * Plain Python: [`example_sim_call_center_series.py`](example_sim_call_center_series.üy)
+  * Jupyter notebook: [`example_sim_call_center_series.ipynb`](example_sim_call_center_series.ipynb)
+* **Simulation of a queueing network with transition probabilities defined via matrices**
+  * Plain Python: [`example_sim_network.py`](example_sim_network.py)
+  * Jupyter notebook: [`example_sim_network.ipynb`](example_sim_network.ipynb)
+* **Distribution random number generator tests**
+  * Plain Python: [`example_sim_random_numbers.py`](example_sim_random_numbers.py)
+  * Jupyter notebook: [`example_sim_random_numbers.ipynb`](example_sim_random_numbers.ipynb)
+* **System design - comparison of different queueing disciplines**
+  * Plain Python: [`exmaple_sim_shortest_queue.py`](exmaple_sim_shortest_queue.py)
+  * Jupyter notebook: [`exmaple_sim_shortest_queue.ipynb`](exmaple_sim_shortest_queue.ipynb)
 
-Queueing disciplines:
+### Queueing disciplines
 
-* FIFO, LIFO or random selection of the next client: [`example_sim_mmc_priorities1.ipynb`](example_sim_mmc_priorities1.ipynb)
-* Two client types with different priorities: [`example_sim_mmc_priorities2.ipynb`](example_sim_mmc_priorities2.ipynb)
+* **FIFO, LIFO or random selection of the next client**
+  * Plain Python: [`example_sim_mmc_priorities1.py`](example_sim_mmc_priorities1.py)
+  * Jupyter notebook: [`example_sim_mmc_priorities1.ipynb`](example_sim_mmc_priorities1.ipynb)
+* **Two client types with different priorities**
+  * Plain Python: [`example_sim_mmc_priorities2.py`](example_sim_mmc_priorities2.py)
+  * Jupyter notebook: [`example_sim_mmc_priorities2.ipynb`](example_sim_mmc_priorities2.ipynb)
 
 ## Optimization
 
-* Simple iterative optimization example: [`example_optimize_simple1.ipynb`](example_optimize_simple1.ipynb)
-* Simple optimization example using [BOBYQA](https://pypi.org/project/Py-BOBYQA/): [`example_optimize_simple2.ipynb`](example_optimize_simple2.ipynb)
-* More complex iterative optimization example: [`example_optimize_complex1.ipynb`](example_optimize_complex1.ipynb)
-* More complex optimization example using [BOBYQA](https://pypi.org/project/Py-BOBYQA/): [`example_optimize_complex2.ipynb`](example_optimize_complex2.ipynb)
+* **Simple iterative optimization example**
+  * Plain Python: [`example_optimize_simple1.py`](example_optimize_simple1.py)
+  * Jupyter notebook: [`example_optimize_simple1.ipynb`](example_optimize_simple1.ipynb)
+* **Simple optimization example using [BOBYQA](https://pypi.org/project/Py-BOBYQA/)**
+  * Plain Python: [`example_optimize_simple2.py`](example_optimize_simple2.py)
+  * Jupyter notebook: [`example_optimize_simple2.ipynb`](example_optimize_simple2.ipynb)
+* **More complex iterative optimization example**
+  * Plain Python: [`example_optimize_complex1.py`](example_optimize_complex1.py)
+  * Jupyter notebook: [`example_optimize_complex1.ipynb`](example_optimize_complex1.ipynb)
+* **More complex optimization example using [BOBYQA](https://pypi.org/project/Py-BOBYQA/)**
+  * Plain Python: [`example_optimize_complex2.py`](example_optimize_complex2.py)
+  * Jupyter notebook: [`example_optimize_complex2.ipynb`](example_optimize_complex2.ipynb)
 
 
 
@@ -114,7 +157,7 @@ The Simulator class contains the code for event management and for running simul
 import queuesim
 
 simulator = queuesim.Simulator()
-# Define stations here, links stations to each other and to the simulator
+# Define stations here, link stations to each other and to the simulator
 simulator.run()
 # Process statistic results here
 ```
@@ -229,7 +272,7 @@ Since M/M/c models are very common, there is a convenience method for generating
 ```python
 import queuesim.models
 
-model = queuesim.models.mmc_model(100, 80, 1, 100_000)  # Parameters: E[I], E[S], c and #arrivals
+model = queuesim.models.mmc_model(100, 80, 1, 100_000)  # Parameters: E[I], E[S], c and number of arrivals
 simulator = queuesim.models.get_simulator_from_model(model)
 simulator.run()
 ```
@@ -358,7 +401,11 @@ print("Average residence time E[V]=", model.EV)
 
 For each individual value class there is also a `..._table` function which takes a list of tuples of the parameters for the formula as parameter and returns a `pandas.DataFrame` of the results for the individual parameter combinations.
 
-There are four notebooks ([`example_analytic_erlang_b.ipynb`](example_analytic_erlang_b.ipynb), [`example_analytic_erlang_c.ipynb`](example_analytic_erlang_c.ipynb), [`example_analytic_erlang_c_ext.ipynb`](example_analytic_erlang_c_ext.ipynb) and [`example_analytic_ac_approx.ipynb`](example_analytic_ac_approx.ipynb)) showing how to use the analytical formula classes.
+There are four plain Python and for Jupyter notebooks showing how to use the analytical formula classes:
+* [`example_analytic_erlang_b.py`](example_analytic_erlang_b.py) / [`example_analytic_erlang_b.ipynb`](example_analytic_erlang_b.ipynb)
+* [`example_analytic_erlang_c.py`](example_analytic_erlang_c.py) / [`example_analytic_erlang_c.ipynb`](example_analytic_erlang_c.ipynb)
+* [`example_analytic_erlang_c_ext.py`](example_analytic_erlang_c_ext.py) / [`example_analytic_erlang_c_ext.ipynb`](example_analytic_erlang_c_ext.ipynb)
+* [`example_analytic_ac_approx.py`](example_analytic_ac_approx.py) / [`example_analytic_ac_approx.ipynb`](example_analytic_ac_approx.ipynb)
 
 
 ## Parallelization
