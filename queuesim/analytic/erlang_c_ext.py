@@ -168,7 +168,8 @@ class erlang_c_ext:
             float: Cancelation probability P(A)
         """
         p0 = self.pn(0)
-        return sum([self.__nu / self.__l * (n - self.__c) * p0 * self.Cn(n) for n in range(self.__c + 1, self.__K + 1)])
+        input_reject = self.pn(self.__K)
+        return sum([self.__nu / (self.__l * (1 - input_reject)) * (n - self.__c) * p0 * self.Cn(n) for n in range(self.__c + 1, self.__K + 1)])
 
     def Pt(self, t: float) -> float:
         """Probability that clients have to wait t or less seconds ( = extended Erlang C formula)
