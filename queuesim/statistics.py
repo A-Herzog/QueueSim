@@ -71,14 +71,14 @@ class RecordDiscrete:
 
         # Process min/max first
         if self.__count == 0:
-            self.__min = np.min(cache)
-            self.__max = np.max(cache)
+            self.__min = float(np.min(cache))
+            self.__max = float(np.max(cache))
         else:
-            self.__min = min(self.__min, np.min(cache))
-            self.__max = max(self.__min, np.max(cache))
+            self.__min = min(self.__min, float(np.min(cache)))
+            self.__max = max(self.__min, float(np.max(cache)))
 
         self.__count += len(cache)
-        self.__sum += np.sum(cache)
+        self.__sum += float(np.sum(cache))
         self.__sum2 += np.sum(np.power(cache, 2))
 
         # Reset cache usage
@@ -317,7 +317,7 @@ class RecordContinuous:
             return [], []
 
     def __str__(self) -> str:
-        return "timspan = {:.1f}, mean = {:.1f}, min = {:.1f}, max = {:.1f}".format(self.time, self.mean, self.min, self.max)
+        return "timespan = {:.1f}, mean = {:.1f}, min = {:.1f}, max = {:.1f}".format(self.time, self.mean, self.min, self.max)
 
     @property
     def info(self) -> str:
@@ -341,7 +341,7 @@ class RecordOptions:
         """Increases the counter for one of the possible options by 1.
 
         Args:
-            option (Any): Choosen option
+            option (Any): Chosen option
         """
         if option in self.__options:
             self.__options[option] += 1

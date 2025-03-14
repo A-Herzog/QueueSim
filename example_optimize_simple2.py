@@ -10,7 +10,7 @@
 # Processing results arrays
 import numpy as np
 
-# Optiomizer
+# Optimizer
 import pybobyqa
 
 # Simulator

@@ -11,7 +11,7 @@ import seaborn as sns
 # Simulation
 from queuesim.models import mmc_model, mmc_results, get_simulator_from_model
 
-# Analytic calcution
+# Analytic calculation
 from queuesim.analytic import erlang_c
 
 # Defining general plot style
@@ -80,7 +80,7 @@ for t in erlang_hist_x:
 # Show histogram
 fig, ax = plt.subplots(figsize=(16, 9))
 ax.bar(hist_x, hist_y, width=stat.histogram_stepwide * 0.75)
-ax.set_ylim([0, max(hist_y[1:])])
+ax.set_ylim(0, max(hist_y[1:]))
 ax.yaxis.set_major_formatter(formater.PercentFormatter(xmax=hist_y_sum, decimals=1))
 ax.tick_params(axis='y', labelcolor='b')
 ax.set_ylabel("Probability from simulation", color='b')
@@ -88,7 +88,7 @@ ax.set_xlabel("Waiting time")
 
 ax = ax.twinx()
 ax.plot(erlang_hist_x, erlang_hist_y, 'r', linewidth=2)
-ax.set_ylim([0, hist_y[1] / hist_y_sum])
+ax.set_ylim(0, hist_y[1] / hist_y_sum)
 ax.yaxis.set_major_formatter(formater.PercentFormatter(xmax=1, decimals=1))
 ax.tick_params(axis='y', labelcolor='r')
 ax.set_ylabel("Probability from Erlang C", color='r')

@@ -128,8 +128,8 @@ def get_multi_run_info(sources: list, simulators: list, lang: Optional[str] = No
 
     if not isinstance(lang, str) or lang.lower() != "de":
         results.append("Models: " + str(len(simulators)))
-        results.append("Client arrivals (total): " + str(round(arrivalCount / 1000 / 1000, 1)) + " millons")
-        results.append("Computing time (total): " + str(round(runTimeAll, 1)) + " Sekunden")
+        results.append("Client arrivals (total): " + str(round(arrivalCount / 1000 / 1000, 1)) + " millions")
+        results.append("Computing time (total): " + str(round(runTimeAll, 1)) + " seconds")
         results.append("Computing time per client (real): " + str(round(runTimeSum / arrivalCount * 1000 * 1000, 1)) + " µs")
     else:
         results.append("Modelle: " + str(len(simulators)))

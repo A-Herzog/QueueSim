@@ -110,7 +110,7 @@ plot_results(statistics, "gamma distribution")
 plt.show()
 
 
-# Trigangular distribution
+# Triangular distribution
 
 low = 20
 high = 100

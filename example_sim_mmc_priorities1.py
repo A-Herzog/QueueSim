@@ -26,7 +26,7 @@ count = 500_000
 
 
 # Priority formulas
-# The client with the highest priority will be served next. So using the waitng time as priority will lead to FIFO, using -waitng time is LIFO.
+# The client with the highest priority will be served next. So using the waiting time as priority will lead to FIFO, using -waiting time is LIFO.
 
 def priority_FIFO(client, waiting_time):
     return waiting_time

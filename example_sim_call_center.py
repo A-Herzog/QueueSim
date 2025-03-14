@@ -78,7 +78,7 @@ LIFO = False
 # Forwarding
 forwarding_rate = 0
 
-# In the model abpove many of the possible properties are not activated (like retry, forwardning, batching etc.).
+# In the model above many of the possible properties are not activated (like retry, forwarding, batching etc.).
 # Also only the exponential distribution is used. So this just a M/M/c model with mit E[I]=100, E[S]=80 and c=1.
 # This can be solved analytically. The results are:
 #

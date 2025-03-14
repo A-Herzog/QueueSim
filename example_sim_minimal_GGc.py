@@ -54,7 +54,7 @@ l = 1 / np.mean(arrival_times[1:] - arrival_times[:-1])  # Calculate lambda from
 EW = waiting_sum / count
 EV = (waiting_sum + service_sum) / count
 ENQ = EW * l  # Since Little holds for all types of inter-arrival and service time distributions
-EN = EV * l  # we can caluclate E[NQ] and E[N] from E[W] and E[V] and do not need to record them directly
+EN = EV * l  # we can calculate E[NQ] and E[N] from E[W] and E[V] and do not need to record them directly
 rho = service_sum / arrival_times[-1] / c  # Sum of all service times divided by last arrival time divided by c
 
 print("Simulation results")

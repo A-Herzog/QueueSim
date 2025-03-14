@@ -72,6 +72,6 @@ if __name__ == '__main__':
 
     fig, ax = plt.subplots(figsize=(16, 9))
     ax.plot(rho, yield_per_day)
-    ax.set_ylim([0, max(yield_per_day) * 1.05])
+    ax.set_ylim(0, max(yield_per_day) * 1.05)
     ax.set(title="Revenue as a function of the utilization of the operators", xlabel="Utilization $\\rho$", ylabel="Revenue")
     plt.show()

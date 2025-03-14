@@ -47,8 +47,8 @@ get_s = dist_exp(mean_s)
 
 # Create and configure stations
 simulator = Simulator()
-source1 = Source(simulator, count / 2, get_i, client_type_name="ClientsA")
-source2 = Source(simulator, count / 2, get_i, client_type_name="ClientsB")
+source1 = Source(simulator, round(count / 2), get_i, client_type_name="ClientsA")
+source2 = Source(simulator, round(count / 2), get_i, client_type_name="ClientsB")
 process = Process(simulator, get_s, c, getPriority=priority)
 decide = DecideClientType(simulator)
 dispose1 = Dispose(simulator)

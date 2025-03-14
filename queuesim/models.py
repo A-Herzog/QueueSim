@@ -28,7 +28,7 @@ limitations under the License.
 __license__ = "Apache 2.0"
 
 
-def get_simulator_from_model(model: dict) -> Simulator:
+def get_simulator_from_model(model) -> Simulator:
     """Returns the simulator object from a station of a model.
 
     Args:
@@ -73,7 +73,7 @@ def mmc_model(mean_i: float, mean_s: float, c: int, count: int, record_values: b
 
 
 def mmc_model_priorities(mean_i: float, mean_s: float, c: int, count: int, priority: Any) -> dict:
-    """Generates a simple M/M/c model with a priotiy lambda for the service discipline.
+    """Generates a simple M/M/c model with a priority lambda for the service discipline.
 
     Args:
         mean_i (float): Average inter-arrival time (E[I])
@@ -109,9 +109,9 @@ def impatience_and_retry_model_build(mean_i: float, mean_s: float, mean_wt: floa
     Args:
         mean_i (float): Average inter-arrival time (E[I])
         mean_s (float): Average service time (E[S])
-        mean_wt (float): Averare waiting time tolerance (E[WT])
+        mean_wt (float): Average waiting time tolerance (E[WT])
         retry_probability: Retry probability
-        mean_retry_delay (float): Averare delay before a retry
+        mean_retry_delay (float): Average delay before a retry
         c (int): Number of operators (c)
         count (int): Client arrivals to be simulated
         record_values (bool, optional): Record each state change? Defaults to False.
@@ -163,7 +163,7 @@ def build_network_model(sources: list, processes: list, disposes: list, connecti
     Raises:
         RuntimeError: Raises an error if the matrix dimensions does to match to the list lengths
     """
-    if len(connections1) != len(sources): raise RuntimeError("connections1 row count does not match number of sourceses")
+    if len(connections1) != len(sources): raise RuntimeError("connections1 row count does not match number of sources")
     if len(connections2) != len(processes): raise RuntimeError("connections2 row count does not match number of processes")
 
     # Get simulator
@@ -182,7 +182,7 @@ def build_network_model(sources: list, processes: list, disposes: list, connecti
     # Connect process stations to each other and to the dispose stations
     for p_index, process in enumerate(processes):
         row = connections2[p_index]
-        if len(row) > len(processes) + len(disposes): raise RuntimeError("connections2 column count does mot match sum of number of processes and numer of dispose stations")
+        if len(row) > len(processes) + len(disposes): raise RuntimeError("connections2 column count does mot match sum of number of processes and number of dispose stations")
 
         if sum([1 for i in row if i > 0]) == 1:
             # Only one connection
@@ -323,7 +323,7 @@ def call_center_results(source: Source, process: Process, forwarding: Optional[D
         results.append("Kunden")
         results.append("  Wartezeit (W): " + str(dispose.statistic_client_waiting))
         results.append("  Bedienzeit (S): " + str(dispose.statistic_client_service))
-        results.append("  Verweilzteit (V): " + str(dispose.statistic_client_residence))
+        results.append("  Verweilzeit (V): " + str(dispose.statistic_client_residence))
         results.append("")
 
         if forwarding is not None and len(forwarding.statistic_options.data) > 1:

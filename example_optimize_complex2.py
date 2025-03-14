@@ -10,7 +10,7 @@
 # Processing results arrays
 import numpy as np
 
-# Optiomizer
+# Optimizer
 import pybobyqa
 
 # Simulator
@@ -80,7 +80,7 @@ print(soln)
 print("Result (should be 88.8%)")
 print(round(soln.x[0] * 100, 1), "%")
 
-x = np.linspace(soln.x - 0.02, soln.x + 0.02, 20)
+x = np.linspace(soln.x[0] - 0.02, soln.x[0] + 0.02, 20)
 y = [f([float(rho)]) for rho in x]  # Takes a little longer, quite simpile formulation without parallelization (approx. 1 min on fast machine)
 
 print("Verification per iteration via [y-epsilon, y+epsilon]")

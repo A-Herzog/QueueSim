@@ -388,7 +388,7 @@ class Process(Station):
             simulator (Simulator): Simulator object
             getS (Any): Generates the individual service times (must be a lambda or a string that can be evaluated to a lambda)
             c (int): Number of operators
-            getNu (Any, optional): Generates the individual wait time tolerences (must be a lambda, a string that can be evaluated to a lambda, or None). If None is passed, the clients are arbitrarily patient. Defaults to None.
+            getNu (Any, optional): Generates the individual wait time tolerances (must be a lambda, a string that can be evaluated to a lambda, or None). If None is passed, the clients are arbitrarily patient. Defaults to None.
             getS2 (Any, optional): Generates the individual postprocessing times (must be a lambda, a string that can be evaluated to a lambda, or None). If None is passed, there are no post processing times. Defaults to None.
             K (int, optional): Size of the waiting and service room. Must be greater than or equal to c, or else -1 for "unlimited". Defaults to -1.
             b (int, optional): Service batch size. Defaults to 1.
@@ -512,7 +512,7 @@ class Process(Station):
         else:
             # Calculate priorities
             if isinstance(self.__getPriority, str): self.__getPriority = eval(self.__getPriority)
-            best_client: Client = None
+            best_client: Client = self.__queue[0]
             best_priority: float = 0
             for i, c in enumerate(self.__queue):
                 priority: float = self.__getPriority(c, self.simulator.time - c.stationArrivalTime)
@@ -808,7 +808,7 @@ class DecideCondition(Station):
         """Sets the condition for selecting the output.
 
         Args:
-            get_nr (Any): Function that has to return the 0-based index of the next station to be choosen
+            get_nr (Any): Function that has to return the 0-based index of the next station to be chosen
         """
         self.__get_nr: Any = get_nr
 
@@ -951,7 +951,9 @@ class Delay(Station):
         self.generate_event(delay, client)
         self._update_statistic()
 
-    def event(self, client: Client) -> None:
+    def event(self, client: Optional[Client]) -> None:
+        if client is None:
+            return
         self.__wip -= 1
         self._update_statistic()
         client.send_to(self.__nextStation)

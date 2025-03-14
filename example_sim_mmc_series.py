@@ -16,7 +16,7 @@ import seaborn as sns
 from queuesim import SimProcess, run_parallel, get_multi_run_info
 from queuesim.models import mmc_model
 
-# Analytic calcution
+# Analytic calculation
 from queuesim.analytic import erlang_c_table
 
 # Defining general plot style
