@@ -1,7 +1,10 @@
 """Classes for modelling the stations of a queueing model"""
 
 from typing import Any, Optional
+import math  # math, random, and scipy.stats are used when evaluating pseudo-random number generators from strings
 import random
+import scipy.stats as stats
+from .random_dist import empirical_helper
 from .descore import Event, Simulator
 from .statistics import RecordDiscrete, RecordContinuous, RecordOptions
 

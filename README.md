@@ -15,7 +15,8 @@ The zip package also includes some example files (as plain Python files and as J
 
 ## Requirements
 
-* **Python 3.7 or higher** is needed to execute QueueSim.
+* **Python 3.9 or higher** is needed to execute QueueSim.
+* **`scipy`** is used to generate pseudo-random numbers of some probability distributions
 * **`numpy`** is used by `queuesim.statistics` and in several example files.
 * **`pandas`** and **`scipy`** are used in `queuesim.analytic`.
 * The visualizations in the example Jupyter notebooks use **`matplotlib`** and **`seaborn`**.

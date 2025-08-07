@@ -23,10 +23,7 @@ limitations under the License.
 __license__ = "Apache 2.0"
 
 
-# "prod" is introduced in Python 3.8.
-# We are 3.7 compatible.
-
-# from math import prod
+from math import prod
 
 
 def power_factorial(x: float, n: int) -> float:
@@ -42,7 +39,4 @@ def power_factorial(x: float, n: int) -> float:
     if n == 0:
         return 1
 
-    # return prod([x / i for i in range(1, n + 1)])
-    prod: float = 1
-    for i in range(1, n + 1): prod *= x / i
-    return prod
+    return prod([x / i for i in range(1, n + 1)])
