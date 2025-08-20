@@ -21,10 +21,9 @@ from queuesim.models import build_network_model
 from queuesim import build_graph
 import networkx as nx
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 
 
 # Model parameters
@@ -82,6 +81,6 @@ print("Mean waiting time at station 1: E[W,2]=", round(process2.statistic_statio
 # Queueing network model
 
 dg = build_graph([source])
-fig, ax = plt.subplots(figsize=(19, 9))
+_, ax = plt.subplots(figsize=(19, 9))
 nx.draw(dg, ax=ax, with_labels=True, node_color='#CCCCFF', node_size=2000, arrowsize=30, width=2)
 plt.show()

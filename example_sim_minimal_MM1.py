@@ -13,10 +13,9 @@ from queuesim.analytic import erlang_c
 # Plotting modules
 import matplotlib.pyplot as plt
 import matplotlib.ticker as formater
-import seaborn as sns
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 
 
 # Model parameters
@@ -78,7 +77,7 @@ count = 500_000
 rho, EW = zip(*[(mean_s / mean_i, mm1_sim(mean_i, mean_s, count)) for mean_s in mean_s_range])
 
 # Show results
-fig, ax = plt.subplots(figsize=(16, 9))
+_, ax = plt.subplots(figsize=(16, 9))
 ax.plot(rho, EW)
 ax.xaxis.set_major_formatter(formater.PercentFormatter(xmax=1, decimals=1))
 ax.set_xlabel("Utilization $\\rho$")

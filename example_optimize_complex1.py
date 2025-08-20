@@ -10,19 +10,16 @@
 import numpy as np
 
 # Simulator
-from queuesim import Simulator
 from queuesim.tools import SimProcess, run_parallel
 
 # Station types
-from queuesim.stations import Source, Process, Dispose
 from queuesim.models import mmc_model
 
 # Plot model
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 
 
 # Model parameters
@@ -70,7 +67,7 @@ if __name__ == '__main__':
     print("Cost-optimal utilization of the operators: \N{greek small letter rho}=", round(rho[np.argmax(yield_per_day)] * 100, 1), "%")
     print("Analyzed range:", round(min(rho) * 100, 1), "% ...", round(max(rho) * 100, 1), "%")
 
-    fig, ax = plt.subplots(figsize=(16, 9))
+    _, ax = plt.subplots(figsize=(16, 9))
     ax.plot(rho, yield_per_day)
     ax.set_ylim(0, max(yield_per_day) * 1.05)
     ax.set(title="Revenue as a function of the utilization of the operators", xlabel="Utilization $\\rho$", ylabel="Revenue")

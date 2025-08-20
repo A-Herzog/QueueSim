@@ -10,7 +10,6 @@ import pandas as pd
 # Plotting modules
 import matplotlib.pyplot as plt
 import matplotlib.ticker as formater
-import seaborn as sns
 
 # Simulation
 from queuesim import SimProcess, run_parallel, get_multi_run_info
@@ -20,7 +19,7 @@ from queuesim.models import mmc_model
 from queuesim.analytic import erlang_c_table
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 
 
 # Model parameters
@@ -63,7 +62,7 @@ if __name__ == '__main__':
     print("real = Computing time per client on a single CPU core (dividing this value by the number of CPU cores is total output)")
 
     # Plotting results
-    fig, ax = plt.subplots(figsize=(16, 9))
+    _, ax = plt.subplots(figsize=(16, 9))
     ax.plot(results['rho'], results['E[W]'], 'b', label="Simulation results")
     ax.plot(erlang_c_results['rho'], erlang_c_results['E[W]'], 'r', label="Erlang C formula results")
     ax.xaxis.set_major_formatter(formater.PercentFormatter(xmax=1, decimals=0))

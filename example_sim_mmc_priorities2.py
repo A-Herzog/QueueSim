@@ -81,6 +81,6 @@ print("  Waiting times (W): " + dispose2.statistic_client_waiting.info)
 # Queueing network model
 
 dg = build_graph([source1, source2])
-fig, ax = plt.subplots(figsize=(19, 9))
+_, ax = plt.subplots(figsize=(19, 9))
 nx.draw(dg, ax=ax, with_labels=True, node_color='#CCCCFF', node_size=2000, arrowsize=30, width=2)
 plt.show()

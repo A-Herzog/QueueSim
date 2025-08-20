@@ -6,13 +6,12 @@
 
 # Plotting modules
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Simulation
 from queuesim.models import mmc_model, get_simulator_from_model
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 
 
 # Model parameters
@@ -47,7 +46,7 @@ wip = model['Process'].statistic_wip
 times, values = wip.values
 
 # Plot
-fig, ax = plt.subplots(figsize=(16, 9))
+_, ax = plt.subplots(figsize=(16, 9))
 ax.plot(times, values)
 ax.set_title("Course of the number of clients in the system")
 ax.set_xlabel("Time")

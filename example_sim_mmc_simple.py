@@ -6,7 +6,6 @@
 # Plotting modules
 import matplotlib.pyplot as plt
 import matplotlib.ticker as formater
-import seaborn as sns
 
 # Simulation
 from queuesim.models import mmc_model, mmc_results, get_simulator_from_model
@@ -15,7 +14,7 @@ from queuesim.models import mmc_model, mmc_results, get_simulator_from_model
 from queuesim.analytic import erlang_c
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 
 
 # Model parameters
@@ -78,7 +77,7 @@ for t in erlang_hist_x:
     last = value
 
 # Show histogram
-fig, ax = plt.subplots(figsize=(16, 9))
+_, ax = plt.subplots(figsize=(16, 9))
 ax.bar(hist_x, hist_y, width=stat.histogram_stepwide * 0.75)
 ax.set_ylim(0, max(hist_y[1:]))
 ax.yaxis.set_major_formatter(formater.PercentFormatter(xmax=hist_y_sum, decimals=1))

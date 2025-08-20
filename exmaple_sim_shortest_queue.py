@@ -86,14 +86,12 @@ process1 = Process(simulator, process_time, c)
 process2 = Process(simulator, process_time, c)
 dispose = Dispose(simulator)
 
-
 def shortest_queue(client) -> int:
     nq1 = process1.nq
     nq2 = process2.nq
     if nq1 < nq2: return 0
     if nq1 > nq2: return 1
     return randint(0, 1)
-
 
 # Link stations
 source.set_next(decide)

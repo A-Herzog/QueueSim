@@ -13,17 +13,25 @@ from queuesim.analytic import erlang_b_table
 # Plotting modules
 import matplotlib.pyplot as plt
 import matplotlib.ticker as formater
-import seaborn as sns
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 percent_formater = formater.PercentFormatter(xmax=1, decimals=0)
 
 
 # Helper function for plotting Erlang B results
 
 def erlang_b_plot(results, x, title: str, x_label: str, x_is_percent=False) -> None:
-    fig, ax = plt.subplots(figsize=(16, 9))
+    """Plots the Erlang B results.
+
+    Args:
+        results (pd.DataFrame): Table contining the data to be plotted ("P(blocked)" and "rho_real" columns)
+        x (list): x axis values
+        title (str): Plot title
+        x_label (str): Label for the x axis
+        x_is_percent (bool, optional): Is the percent formater to be used for the x axis? Defaults to False.
+    """
+    _, ax = plt.subplots(figsize=(16, 9))
 
     ax.plot(x, results["P(blocked)"], 'r')
     ax.tick_params(axis='y', labelcolor='r')

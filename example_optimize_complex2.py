@@ -67,7 +67,7 @@ a = np.array([0.5])
 b = np.array([0.99])
 
 # Running BOBYQA
-soln = pybobyqa.solve(minimize_f, x0, bounds=(a, b))  # Actually corrent, but then the optimization runs endlessly (==">5Min"):  objfun_has_noise=True
+soln = pybobyqa.solve(minimize_f, x0, bounds=(a, b))  # Actually correct, but then the optimization runs endlessly (==">5Min"):  objfun_has_noise=True
 
 
 # Results
@@ -81,10 +81,10 @@ print("Result (should be 88.8%)")
 print(round(soln.x[0] * 100, 1), "%")
 
 x = np.linspace(soln.x[0] - 0.02, soln.x[0] + 0.02, 20)
-y = [f([float(rho)]) for rho in x]  # Takes a little longer, quite simpile formulation without parallelization (approx. 1 min on fast machine)
+y = [f([float(rho)]) for rho in x]  # Takes a little longer, quite simple formulation without parallelization (approx. 1 min on fast machine)
 
 print("Verification per iteration via [y-epsilon, y+epsilon]")
-print(round(x[np.argmax(y)][0] * 100, 1), "%")
+print(round(x[np.argmax(y)] * 100, 1), "%")
 
 # Attention: $f(x)$ is not deterministic.
 # If the iterative search returns a slightly different value, this does not mean that the optimization result is not the optimum.

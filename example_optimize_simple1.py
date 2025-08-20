@@ -9,19 +9,16 @@
 import numpy as np
 
 # Simulator
-from queuesim import Simulator
 from queuesim.tools import SimProcess, run_parallel
 
 # Station types
-from queuesim.stations import Source, Process, Dispose
 from queuesim.models import mmc_model
 
 # Plot model
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 
 
 # Model parameters
@@ -57,7 +54,7 @@ if __name__ == '__main__':
     print("Cost-optimal number of operators:", c_range[np.argmin(costs)])
     print("Analyzed range:", c_range[0], "...", c_range[-1])
 
-    fig, ax = plt.subplots(figsize=(16, 9))
+    _, ax = plt.subplots(figsize=(16, 9))
     ax.plot(c_range, costs)
     ax.set(title="Costs as a function of the number of operators", xlabel="Number of operators $c$", ylabel="Costs")
     plt.show()

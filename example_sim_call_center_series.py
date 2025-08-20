@@ -9,17 +9,16 @@ import pandas as pd
 # Plotting modules
 import matplotlib.pyplot as plt
 import matplotlib.ticker as formater
-import seaborn as sns
 
 # Simulation
 from queuesim import SimProcess, run_parallel
 from queuesim.models import impatience_and_retry_model_build
 
-# Analytic calcution
+# Analytic calculation
 from queuesim.analytic import erlang_c_table, erlang_c_ext_table
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 percent_formater = formater.PercentFormatter(xmax=1, decimals=0)
 
 
@@ -140,7 +139,7 @@ if __name__ == '__main__':
     # So deviations between the simulation and the formula results can be expected.
 
     # Plotting results
-    fig, ax = plt.subplots(figsize=(16, 9))
+    _, ax = plt.subplots(figsize=(16, 9))
 
     ax.plot(results['rho_offered'], results['E[W]'], 'r', label="E[W] simulation results")
     ax.plot(erlang_c_ext_results['rho_offered'], erlang_c_ext_results['E[W]'], 'b', label="E[W] extended Erlang C formula results")

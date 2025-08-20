@@ -5,11 +5,11 @@
 # Importing modules
 
 import math
+from typing import Union, Callable
 
 # Plotting modules
 import matplotlib.pyplot as plt
 import matplotlib.ticker as formater
-import seaborn as sns
 
 # Generating pseudo random numbers
 import queuesim.random_dist as rnd
@@ -18,15 +18,20 @@ import queuesim.random_dist as rnd
 from queuesim.statistics import RecordDiscrete
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 
 
 # Helper function for generating random numbers and showing the results of the tests
 
-def generate_random_numbers(generator) -> RecordDiscrete:
+def generate_random_numbers(generator : Union[str, Callable[[], float]]) -> RecordDiscrete:
+    if isinstance(generator, str):
+        generator_func = eval(generator)
+    else:
+        generator_func = generator
+
     statistics = RecordDiscrete()
     for i in range(1_000_000):
-        statistics.record(generator())
+        statistics.record(generator_func())
     return statistics
 
 

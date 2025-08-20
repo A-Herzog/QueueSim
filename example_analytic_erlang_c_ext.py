@@ -10,10 +10,9 @@ from queuesim.analytic import erlang_c_ext_table
 # Plotting modules
 import matplotlib.pyplot as plt
 import matplotlib.ticker as formater
-import seaborn as sns
 
 # Defining general plot style
-sns.set()
+plt.style.use('seaborn-v0_8')
 percent_formater = formater.PercentFormatter(xmax=1, decimals=0)
 
 
@@ -43,7 +42,7 @@ print(results)
 
 # Plot results
 
-fig, ax = plt.subplots(figsize=(16, 9))
+_, ax = plt.subplots(figsize=(16, 9))
 
 line1 = ax.plot(results["rho_offered"], results["E[W]"], 'b', label="E[W]")
 ax.tick_params(axis='y', labelcolor='b')
